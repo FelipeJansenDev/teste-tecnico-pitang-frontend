@@ -42,4 +42,16 @@ export class AccountService {
     localStorage.removeItem("token");
     this.router.navigateByUrl("/login");
   }
+
+  register(value: any) {
+      console.log(value);
+    return this.http.post<any>(`${environment.apiUrl}/users`, value)
+      .pipe(map(user => {
+        console.log(user);
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        this.userSubject.next(user);
+        this.router.navigateByUrl("/login");
+        return user;
+      }));
+  }
 }
