@@ -6,15 +6,18 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
+import {InterceptorInterceptor} from "./config/interceptor.interceptor";
+import { CadastroCarroComponent } from './pages/cadastro-carro/cadastro-carro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    CadastroComponent
+    CadastroComponent,
+    CadastroCarroComponent
   ],
   imports: [
     HttpClientModule,
@@ -22,7 +25,11 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: InterceptorInterceptor, multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
