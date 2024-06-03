@@ -30,7 +30,9 @@ export class CadastroCarroComponent implements OnInit{
       color: ['', Validators.required],
       licensePlate: ['', Validators.required],
       model: ['', Validators.required],
-      userId: ['', Validators.required]
+      userId: ['', Validators.required],
+      year: ['', Validators.required]
+
     });
     this.activatedRoute.params.subscribe(params => {
       console.log(params['id']);
@@ -76,7 +78,8 @@ export class CadastroCarroComponent implements OnInit{
         color: res.color,
         licensePlate: res.licensePlate,
         model: res.model,
-        userId: res.userId
+        userId: res.userId,
+        year: res.year
       })
     })
   }

@@ -12,6 +12,7 @@
           <th scope="col">License Plate</th>
           <th scope="col">Model</th>
           <th scope="col">Color</th>
+          <th scope="col">Year</th>
           <th scope="col"></th>
         </tr>
         </thead>
@@ -21,6 +22,7 @@
           <td>{{ carro.licensePlate }}</td>
           <td>{{ carro.model }}</td>
           <td>{{ carro.color }}</td>
+          <td>{{ carro.year }}</td>
           <td>
             <button [routerLink]="['../cadastro-carro', carro.id]"  type="button" class="btn btn-primary"><i class="bi bi-eye"></i></button>
             <button (click)="deletarCarro(carro.id)" type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>

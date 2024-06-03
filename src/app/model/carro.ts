@@ -3,5 +3,6 @@ export interface Carro {
   color: number;
   licensePlate: number;
   model: number;
-  userId: number
+  userId: number,
+  year: number
 }

@@ -36,3 +36,13 @@ Para **NÃO TER MAIS NENHUM REGISTRO DELES NA MINHA CONTA**
 Como **USUÁRIO**\
 Eu quero **TER ACESSO A UM FORMULÁRIO COM AS INFORMAÇÕES DO CARRO SELECIONADO** \
 Para **ALTERAR OS DADOS DO CARRO**
+
+## Usuários disponíveis
+
+| Nome de Login | Senha    |
+|---------------|----------|
+| john         | password |
+| janesmith         | password |
+| robertbrown         | password |
+| emilyjones         | password |
+| michaeltaylor         | password |
