@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import {AccountService} from "../../services/account.service";
 import {AlertService} from "../../services/alert.service";
+import {Exception} from "../../model/exception";
 
 
 @Component({
@@ -14,6 +15,8 @@ export class LoginComponent implements OnInit {
   form!: FormGroup;
   loading = false;
   submitted = false;
+  exceptions: Exception[] = [];
+  mostrarErro = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,14 +47,10 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.accountService.login(this.f['login'].value, this.f['password'].value)
-      .pipe(first())
-      .subscribe({
-        next: () => {},
-        error: (error: any) => {
-          this.alertService.error(error);
-          this.loading = false;
-        }
-      });
+    this.accountService.login(this.f['login'].value, this.f['password'].value).subscribe(res => {
+    }, error => {
+      this.mostrarErro = true;
+      this.exceptions = error.error;
+    });
   }
 }

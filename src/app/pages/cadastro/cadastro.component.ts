@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {first} from "rxjs/operators";
 import {AccountService} from "../../services/account.service";
+import {Exception} from "../../model/exception";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-cadastro',
@@ -10,11 +12,13 @@ import {AccountService} from "../../services/account.service";
 })
 export class CadastroComponent implements OnInit{
   form!: FormGroup;
+  exceptions: Exception[] = [];
+  mostrarErro = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private accountService: AccountService,
-
+    private router: Router
   ) {
   }
 
@@ -39,14 +43,12 @@ export class CadastroComponent implements OnInit{
       return;
     }
 
-    this.accountService.register(this.form.value)
-      .pipe(first())
-      .subscribe({
-        next: () => {
-        },
-        error: error => {
-        }
-      });
+    this.accountService.register(this.form.value).subscribe(res => {
+      this.router.navigateByUrl("/login");
+    }, error => {
+      this.mostrarErro = true;
+      this.exceptions = error.error;
+    });
   }
 
 }
