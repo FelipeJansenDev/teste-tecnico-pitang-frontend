@@ -1,21 +1,24 @@
-<div class="card">
-  <h4 class="card-header">Login</h4>
-  <div class="card-body">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="mb-3">
-        <label class="form-label">Username</label>
-        <input type="text" formControlName="login" class="form-control" />
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="card px-5 py-5" id="form1">
+        <div class="form-data" v-if="!submitted">
+          <div class="forms-inputs mb-4"> <span>Username</span>
+            <input type="text" formControlName="login" class="form-control" />
+          </div>
+          <div class="forms-inputs mb-4"> <span>Password</span>
+            <input type="password" formControlName="password" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <button class="btn btn-dark w-100">
+              Login
+            </button>
+            <a routerLink="../cadastro" class="d-flex btn btn-link align-content-center justify-content-center">Realizar cadastro</a>
+          </div>
+        </div>
       </div>
-      <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input type="password" formControlName="password" class="form-control" />
-      </div>
-      <div>
-        <button [disabled]="loading" class="btn btn-primary">
-          Login
-        </button>
-        <a routerLink="../cadastro" class="btn btn-link">Register</a>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>

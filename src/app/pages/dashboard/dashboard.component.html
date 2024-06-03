@@ -1,11 +1,39 @@
 <div class="container">
   <h2>Meus Carros <button routerLink="../cadastro-carro" type="button" class="btn btn-primary">Adicionar um novo carro</button> </h2>
   <div class="row">
-    <ul class="list-group">
-      <li *ngFor="let carro of carros" class="list-group-item">
-        {{ carro.licensePlate }} <button (click)="deletarCarro(carro.id)" type="button" class="btn btn-danger">Deletar</button>
-      </li>
-    </ul>
+    <div class="col-12">
+      <div *ngIf="carros.length == 0" class="alert alert-primary" role="alert">
+        Não existem carros cadastrados para este usuário
+      </div>
+      <table *ngIf="carros.length > 0" class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">License Plate</th>
+          <th scope="col">Model</th>
+          <th scope="col">Color</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let carro of carros">
+          <th scope="row">{{ carro.id }}</th>
+          <td>{{ carro.licensePlate }}</td>
+          <td>{{ carro.model }}</td>
+          <td>{{ carro.color }}</td>
+          <td>
+            <button [routerLink]="['../cadastro-carro', carro.id]"  type="button" class="btn btn-primary"><i class="bi bi-eye"></i></button>
+            <button (click)="deletarCarro(carro.id)" type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <button (click)="logout()" class="btn btn-danger">
+      Realizar logout
+    </button>
     <div *ngIf="mostrarMensagemDeErro">
       <div *ngFor="let erro of exceptions" class="alert alert-danger" role="alert">
         Code: {{ erro.errorCode }} <br>
@@ -17,9 +45,5 @@
         {{ mensagemDeSucesso }}
       </div>
     </div>
-    <button (click)="logout()" class="btn btn-danger">
-      Realizar logout
-    </button>
   </div>
 </div>
-

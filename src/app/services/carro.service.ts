@@ -13,7 +13,7 @@ export class CarroService {
   ) {}
 
   getAll(): Observable<Carro[]> {
-    return this.http.get<any>(`${environment.apiUrl}/cars`);
+    return this.http.get<Carro[]>(`${environment.apiUrl}/cars`);
   }
 
   register(car: any) {
@@ -22,5 +22,13 @@ export class CarroService {
 
   delete(id: number) {
     return this.http.delete<any>(`${environment.apiUrl}/cars/${id}`);
+  }
+
+  getById(id: number): Observable<Carro> {
+    return this.http.get<Carro>(`${environment.apiUrl}/cars/${id}`);
+  }
+
+  update(id: number, car: any) {
+    return this.http.put<any>(`${environment.apiUrl}/cars/${id}`, car);
   }
 }

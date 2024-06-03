@@ -3,4 +3,5 @@ export interface Carro {
   color: number;
   licensePlate: number;
   model: number;
+  userId: number
 }

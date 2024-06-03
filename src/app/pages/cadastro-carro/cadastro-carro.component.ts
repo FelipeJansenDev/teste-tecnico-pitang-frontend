@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../services/account.service";
 import {first} from "rxjs/operators";
 import {CarroService} from "../../services/carro.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Exception} from "../../model/exception";
 
 @Component({
@@ -20,19 +20,46 @@ export class CadastroCarroComponent implements OnInit{
     private formBuilder: FormBuilder,
     private carroService: CarroService,
     private router: Router,
-
+    private activatedRoute: ActivatedRoute
   ) {
   }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
+      id: ['', Validators.required],
       color: ['', Validators.required],
       licensePlate: ['', Validators.required],
       model: ['', Validators.required],
+      userId: ['', Validators.required]
+    });
+    this.activatedRoute.params.subscribe(params => {
+      console.log(params['id']);
+      if (params['id'] != null) {
+        this.getCarroById(params['id']);
+      }
     });
   }
 
   onSubmit() {
+    if (!this.form.get('id')?.value) {
+      console.log("Criando novo carro");
+      this.cadastrarCarro();
+    } else {
+      console.log("Atualizando carro");
+      this.atualizarCarro();
+    }
+  }
+
+  private atualizarCarro() {
+    this.carroService.update(this.form.get('id')?.value, this.form.value).subscribe(res => {
+      this.router.navigateByUrl("/dashboard");
+    }, error => {
+      this.mostrarErro = true;
+      this.exceptions = error.error;
+    });
+  }
+
+  private cadastrarCarro() {
     this.carroService.register(this.form.value).subscribe(res => {
       this.router.navigateByUrl("/dashboard");
     }, error => {
@@ -41,5 +68,16 @@ export class CadastroCarroComponent implements OnInit{
     });
   }
 
-  protected readonly external = external;
+  private getCarroById(id: any) {
+    this.carroService.getById(id).subscribe(res => {
+      console.log(res);
+      this.form.patchValue({
+        id: res.id,
+        color: res.color,
+        licensePlate: res.licensePlate,
+        model: res.model,
+        userId: res.userId
+      })
+    })
+  }
 }

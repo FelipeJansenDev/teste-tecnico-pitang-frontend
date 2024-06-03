@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'cadastro', component: CadastroComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  { path: 'cadastro-carro', component: CadastroCarroComponent, canActivate: [AuthGuard]}
+  { path: 'cadastro-carro', component: CadastroCarroComponent, canActivate: [AuthGuard]},
+  { path: 'cadastro-carro/:id', component: CadastroCarroComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
