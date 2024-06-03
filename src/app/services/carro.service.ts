@@ -19,4 +19,8 @@ export class CarroService {
   register(car: any) {
     return this.http.post<any>(`${environment.apiUrl}/cars`, car);
   }
+
+  delete(id: number) {
+    return this.http.delete<any>(`${environment.apiUrl}/cars/${id}`);
+  }
 }

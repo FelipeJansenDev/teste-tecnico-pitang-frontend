@@ -2,8 +2,21 @@
   <h2>Meus Carros <button routerLink="../cadastro-carro" type="button" class="btn btn-primary">Adicionar um novo carro</button> </h2>
   <div class="row">
     <ul class="list-group">
-      <li *ngFor="let carro of carros" class="list-group-item">{{ carro.licensePlate }}</li>
+      <li *ngFor="let carro of carros" class="list-group-item">
+        {{ carro.licensePlate }} <button (click)="deletarCarro(carro.id)" type="button" class="btn btn-danger">Deletar</button>
+      </li>
     </ul>
+    <div *ngIf="mostrarMensagemDeErro">
+      <div *ngFor="let erro of exceptions" class="alert alert-danger" role="alert">
+        Code: {{ erro.errorCode }} <br>
+        Message Error: {{ erro.message }}
+      </div>
+    </div>
+    <div *ngIf="mostrarMensagemDeSucesso">
+      <div class="alert alert-success" role="alert">
+        {{ mensagemDeSucesso }}
+      </div>
+    </div>
     <button (click)="logout()" class="btn btn-danger">
       Realizar logout
     </button>
