@@ -1,0 +1,32 @@
+<div class="card">
+  <h4 class="card-header">Adicionar um novo carro</h4>
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Color</label>
+        <input type="text" formControlName="color" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">License Plate</label>
+        <input type="text" formControlName="licensePlate" class="form-control"  />
+
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Model</label>
+        <input type="text" formControlName="model" class="form-control" />
+      </div>
+      <div>
+        <button class="btn btn-primary">
+          Cadastrar
+        </button>
+        <a routerLink="../dashboard" class="btn btn-link">voltar</a>
+      </div>
+    </form>
+    <div *ngIf="mostrarErro">
+      <div *ngFor="let erro of exceptions" class="alert alert-danger" role="alert">
+        Code: {{ erro.errorCode }} <br>
+        Message Error: {{ erro.message }}
+      </div>
+    </div>
+  </div>
+</div>

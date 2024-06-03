@@ -14,8 +14,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
+
     private accountService: AccountService,
     private alertService: AlertService
   ) { }

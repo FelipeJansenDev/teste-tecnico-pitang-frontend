@@ -1,11 +1,10 @@
 <div class="container">
-  <h2>Meus Carros</h2>
-  <ul class="list-group">
-    <li *ngFor="let carro of carros" class="list-group-item">{{ carro.licensePlate }}</li>
-  </ul>
-
-  <div>
-    <button (click)="logout()" class="btn btn-primary">
+  <h2>Meus Carros <button routerLink="../cadastro-carro" type="button" class="btn btn-primary">Adicionar um novo carro</button> </h2>
+  <div class="row">
+    <ul class="list-group">
+      <li *ngFor="let carro of carros" class="list-group-item">{{ carro.licensePlate }}</li>
+    </ul>
+    <button (click)="logout()" class="btn btn-danger">
       Realizar logout
     </button>
   </div>
