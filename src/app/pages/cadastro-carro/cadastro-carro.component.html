@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <h4 class="d-flex justify-content-center">Adicionar um novo carro</h4>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="card px-5 py-5" id="form1">
+          <div class="form-data" v-if="!submitted">
+            <div *ngIf="mostrarErro">
+              <div *ngFor="let erro of exceptions" class="alert alert-danger" role="alert">
+                <b>{{ erro.message }}</b> <br>
+                Code: {{ erro.errorCode }}
+              </div>
+            </div>
+            <div *ngIf="form.get('id')?.value" class="forms-inputs mb-4">
+              <div class="alert alert-secondary" role="alert">
+                {{ form.get('id')?.value }}
+              </div>
+            </div>
+            <div class="forms-inputs mb-4"> <span>Color</span>
+              <input type="text" formControlName="color" class="form-control" />
+            </div>
+            <div class="forms-inputs mb-4"> <span>License Plate</span>
+              <input type="text" formControlName="licensePlate" class="form-control"  />
+            </div>
+            <div class="forms-inputs mb-4"> <span>Model</span>
+              <input type="text" formControlName="model" class="form-control" />
+            </div>
+            <div class="forms-inputs mb-4"> <span>Year</span>
+              <input type="number" formControlName="year" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <button class="btn btn-dark w-100">
+                {{ form.get('id')?.value ? 'Atualizar' : 'Cadastrar' }}
+              </button>
+              <a [routerLink]="['/dashboard']" class="d-flex btn btn-link align-content-center justify-content-center">Voltar para Dashboard</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
