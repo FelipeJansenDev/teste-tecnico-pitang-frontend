@@ -37,12 +37,6 @@ export class CadastroComponent implements OnInit{
   get f() { return this.form.controls; }
 
   onSubmit() {
-
-    // stop here if form is invalid
-    if (this.form.invalid) {
-      return;
-    }
-
     this.accountService.register(this.form.value).subscribe(res => {
       this.router.navigateByUrl("/login");
     }, error => {

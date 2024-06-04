@@ -4,7 +4,8 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'http://54.210.212.29:8080/pitangTesteTecnico/api'
+  // apiUrl: 'http://local:8080/pitangTesteTecnico/api'
+  apiUrl: 'http://localhost:8080/pitangTesteTecnico/api'
 };
 
 /*

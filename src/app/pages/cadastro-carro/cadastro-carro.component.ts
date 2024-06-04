@@ -26,11 +26,11 @@ export class CadastroCarroComponent implements OnInit{
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      id: ['', Validators.required],
+      id: [''],
       color: ['', Validators.required],
       licensePlate: ['', Validators.required],
       model: ['', Validators.required],
-      userId: ['', Validators.required],
+      userId: [''],
       year: ['', Validators.required]
 
     });

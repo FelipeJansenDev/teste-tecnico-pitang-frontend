@@ -10,6 +10,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import {InterceptorInterceptor} from "./config/interceptor.interceptor";
 import { CadastroCarroComponent } from './pages/cadastro-carro/cadastro-carro.component';
+import { MostrarErroComponent } from './components/mostrar-erro/mostrar-erro.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CadastroCarroComponent } from './pages/cadastro-carro/cadastro-carro.co
     LoginComponent,
     DashboardComponent,
     CadastroComponent,
-    CadastroCarroComponent
+    CadastroCarroComponent,
+    MostrarErroComponent
   ],
   imports: [
     HttpClientModule,

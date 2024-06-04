@@ -32,20 +32,20 @@
       </table>
     </div>
   </div>
+  <div *ngIf="mostrarMensagemDeErro">
+    <div *ngFor="let erro of exceptions" class="alert alert-danger" role="alert">
+      Code: {{ erro.errorCode }} <br>
+      Message Error: {{ erro.message }}
+    </div>
+  </div>
+  <div *ngIf="mostrarMensagemDeSucesso">
+    <div class="alert alert-success" role="alert">
+      {{ mensagemDeSucesso }}
+    </div>
+  </div>
   <div class="row">
     <button (click)="logout()" class="btn btn-danger">
       Realizar logout
     </button>
-    <div *ngIf="mostrarMensagemDeErro">
-      <div *ngFor="let erro of exceptions" class="alert alert-danger" role="alert">
-        Code: {{ erro.errorCode }} <br>
-        Message Error: {{ erro.message }}
-      </div>
-    </div>
-    <div *ngIf="mostrarMensagemDeSucesso">
-      <div class="alert alert-success" role="alert">
-        {{ mensagemDeSucesso }}
-      </div>
-    </div>
   </div>
 </div>

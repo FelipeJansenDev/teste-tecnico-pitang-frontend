@@ -36,17 +36,6 @@ export class LoginComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onSubmit() {
-    this.submitted = true;
-
-    // reset alerts on submit
-    this.alertService.clear();
-
-    // stop here if form is invalid
-    if (this.form.invalid) {
-      return;
-    }
-
-    this.loading = true;
     this.accountService.login(this.f['login'].value, this.f['password'].value).subscribe(res => {
     }, error => {
       this.mostrarErro = true;

@@ -4,12 +4,6 @@
       <h4 class="d-flex justify-content-center">Criar um novo cadastro</h4>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="card px-5 py-5">
-          <div *ngIf="mostrarErro">
-            <div *ngFor="let erro of exceptions" class="alert alert-danger" role="alert">
-              <b>{{ erro.message }}</b> <br>
-              Code: {{ erro.errorCode }}
-            </div>
-          </div>
           <div class="form-data">
             <div class="forms-inputs mb-4"> <span>First Name</span>
               <input type="text" formControlName="firstName" class="form-control" />
@@ -18,13 +12,13 @@
               <input type="text" formControlName="lastName" class="form-control"  />
             </div>
             <div class="forms-inputs mb-4"> <span>E-mail</span>
-              <input type="text" formControlName="email" class="form-control"  />
+              <input type="email" formControlName="email" class="form-control"  />
             </div>
             <div class="forms-inputs mb-4"> <span>Birthday</span>
-              <input type="text" formControlName="birthday" class="form-control"  />
+              <input type="date" formControlName="birthday" class="form-control"  />
             </div>
             <div class="forms-inputs mb-4"> <span>Phone</span>
-              <input type="text" formControlName="phone" class="form-control"  />
+              <input type="number" formControlName="phone" class="form-control"  />
             </div>
             <div class="forms-inputs mb-4"> <span>Login</span>
               <input type="text" formControlName="login" class="form-control"  />
@@ -32,8 +26,9 @@
             <div class="forms-inputs mb-4"> <span>Password</span>
               <input type="password" formControlName="password" class="form-control"  />
             </div>
+            <app-mostrar-erro [exceptions]="exceptions"></app-mostrar-erro>
             <div class="mb-3">
-              <button class="btn btn-dark w-100">
+              <button [disabled]="form.invalid" class="btn btn-dark w-100">
                 Confirmar
               </button>
               <a [routerLink]="['/login']" class="d-flex btn btn-link align-content-center justify-content-center">Voltar</a>

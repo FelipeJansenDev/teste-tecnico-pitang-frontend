@@ -4,27 +4,53 @@
       <h4 class="d-flex justify-content-center">Realizar Login</h4>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="card px-5 py-5" id="form1">
-        <div class="form-data" v-if="!submitted">
+          <div class="form-data" v-if="!submitted">
           <div class="forms-inputs mb-4"> <span>Username</span>
             <input type="text" formControlName="login" class="form-control" />
           </div>
           <div class="forms-inputs mb-4"> <span>Password</span>
             <input type="password" formControlName="password" class="form-control" />
           </div>
-          <div class="mb-3">
-            <button class="btn btn-dark w-100">
+            <app-mostrar-erro [exceptions]="exceptions"></app-mostrar-erro>
+            <div class="mb-3">
+              <button [disabled]="form.invalid" class="btn btn-dark w-100">
               Acessar
             </button>
             <a routerLink="../cadastro" class="d-flex btn btn-link align-content-center justify-content-center">Realizar cadastro</a>
           </div>
-          <div *ngIf="mostrarErro">
-            <div *ngFor="let erro of exceptions" class="alert alert-danger" role="alert">
-              <b>{{ erro.message }}</b> <br>
-              Code: {{ erro.errorCode }}
+          </div>
+          <div class="row">
+            <p>Abaixo estão algumas contas criadas automaticamente e que já possuem registros</p>
+            <div>
+              <table>
+              <tr>
+                <th>Nome de Login</th>
+                <th>Senha</th>
+              </tr>
+              <tr>
+                <td>john</td>
+                <td>password</td>
+              </tr>
+              <tr>
+                <td>janesmith</td>
+                <td>password</td>
+              </tr>
+              <tr>
+                <td>robertbrown</td>
+                <td>password</td>
+              </tr>
+              <tr>
+                <td>emilyjones</td>
+                <td>password</td>
+              </tr>
+              <tr>
+                <td>michaeltaylor</td>
+                <td>password</td>
+              </tr>
+            </table>
             </div>
           </div>
         </div>
-      </div>
       </form>
     </div>
   </div>
