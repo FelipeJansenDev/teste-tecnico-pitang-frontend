@@ -5,12 +5,6 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="card px-5 py-5" id="form1">
           <div class="form-data" v-if="!submitted">
-            <div *ngIf="mostrarErro">
-              <div *ngFor="let erro of exceptions" class="alert alert-danger" role="alert">
-                <b>{{ erro.message }}</b> <br>
-                Code: {{ erro.errorCode }}
-              </div>
-            </div>
             <div *ngIf="form.get('id')?.value" class="forms-inputs mb-4">
               <div class="alert alert-secondary" role="alert">
                 {{ form.get('id')?.value }}
@@ -28,8 +22,9 @@
             <div class="forms-inputs mb-4"> <span>Year</span>
               <input type="number" formControlName="year" class="form-control" />
             </div>
+            <app-mostrar-erro [exceptions]="exceptions"></app-mostrar-erro>
             <div class="mb-3">
-              <button class="btn btn-dark w-100">
+              <button [disabled]="form.invalid" class="btn btn-dark w-100">
                 {{ form.get('id')?.value ? 'Atualizar' : 'Cadastrar' }}
               </button>
               <a [routerLink]="['/dashboard']" class="d-flex btn btn-link align-content-center justify-content-center">Voltar para Dashboard</a>
